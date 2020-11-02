@@ -1,0 +1,108 @@
+
+<form class="k-form" [formGroup]="employeeForm">
+  <fieldset class="k-form-fieldset">
+
+    <div class="row">
+      <div class="col-4">
+        <kendo-formfield>
+          <img [src]="'data:image/jpeg;base64,' + base64textString" alt="" />
+          <kendo-label [for]="photo" text="Фото"></kendo-label>
+          <kendo-fileselect formControlName="photo" #photo multiple="false" (select)="onPhotoSelect($event)"></kendo-fileselect>
+          <kendo-formhint>Фото сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Фото сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+      </div>
+      <div class="col-4">
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="personnelNumber" text="Табель"></kendo-label>
+          <input formControlName="personnelNumber" kendoTextBox #personnelNumber required/>
+
+          <kendo-formhint>Табель сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Табель сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="name" text="Имя"></kendo-label>
+          <input formControlName="name" kendoTextBox #name required/>
+
+          <kendo-formhint>Имя сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Имя сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="surname" text="Фамилия"></kendo-label>
+          <input formControlName="surname" kendoTextBox #surname required/>
+
+          <kendo-formhint>Фамилия сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Фамилия сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="patronymic" text="Отчество"></kendo-label>
+          <input formControlName="patronymic" kendoTextBox #patronymic required/>
+
+          <kendo-formhint>Отчество сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Отчество сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="contactPhone" text="Сотовый телефон"></kendo-label>
+          <input formControlName="contactPhone" kendoTextBox #contactPhone required/>
+
+          <kendo-formhint>Сотовый телефон сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Сотовый телефон сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+
+      </div>
+      <div class="col-4">
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="workPhone" text="Рабочий телефон"></kendo-label>
+          <input formControlName="workPhone" kendoTextBox #workPhone required/>
+
+          <kendo-formhint>Рабочий телефон сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Рабочий телефон сотрудника должно быть указано</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+          <kendo-label [for]="email" text="Email"></kendo-label>
+          <input formControlName="email" kendoTextBox #email />
+
+          <kendo-formhint>Электронный адрес сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Неверный формат электронного адреса</kendo-formerror>
+        </kendo-formfield>
+
+
+        <kendo-formfield>
+          <kendo-label [for]="birthDate" text="Дата рождения"></kendo-label>
+          <kendo-datepicker #birthDate
+                            formControlName="birthDate"
+                            required
+          ></kendo-datepicker>
+          <kendo-formhint>Дата рождения сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Дата рождения сотрудника должна быть указана</kendo-formerror>
+        </kendo-formfield>
+
+        <kendo-formfield>
+          <kendo-label [for]="position" text="Должность"></kendo-label>
+          <kendo-dropdownlist #position
+                              textField="title"
+                              valueField="id"
+                              [valuePrimitive]="true"
+                              [data]="positions"
+                              formControlName="position"
+                              required>
+            <ng-template kendoDropDownListItemTemplate let-dataItem>
+              <div>{{ dataItem.title }} ({{dataItem.division.fullTitle }})</div>
+            </ng-template>
+          </kendo-dropdownlist>
+          <kendo-formhint>Должность сотрудника</kendo-formhint>
+          <kendo-formerror>Ошибка: Должность сотрудника должна быть указана</kendo-formerror>
+        </kendo-formfield>
+      </div>
+    </div>
+
+  </fieldset>
+  <button kendoButton (click)="onButtonClick()" [disabled]="!employeeForm.valid">Сохранить</button>
+</form>

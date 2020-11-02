@@ -1,0 +1,8 @@
+<dx-tree-view [items]="divisions"
+              keyExpr="id"
+              displayExpr="fullTitle"
+              dataStructure="plain"
+              (onItemClick)="onItemClick($event)"
+              parentIdExpr="parentId">
+
+</dx-tree-view>

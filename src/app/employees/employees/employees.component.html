@@ -1,0 +1,44 @@
+<app-header (onAddEmployee)="onAddEmployee()"
+            (onSearch)="onSearch($event)">
+
+</app-header>
+<div style="width: 100%; height: 1500px;">
+  <as-split direction="horizontal" unit="pixel">
+    <as-split-area [size]="300">
+      <app-divisions *ngIf="divisions" [divisions]="divisions" (onSelected)="onSelected($event)">
+
+      </app-divisions>
+    </as-split-area>
+    <as-split-area>
+      <app-employees-table *ngIf="employees"
+                           [employees]="employees"
+                           (onAddAccount)="onAddAccount($event)"
+                           (onDelete)="onDelete($event)"
+                           (onEdit)="onEmployeeEdit($event)">
+
+      </app-employees-table>
+    </as-split-area>
+  </as-split>
+</div>
+
+<kendo-dialog title="Данные сотрудника"
+              *ngIf="opened && vacantPositions"
+              (close)="close('cancel')"
+              [minWidth]="250" [width]="1550">
+  <app-employee-form [positions]="vacantPositions" [employee]="employee" (onSave)="onEmployeeSave($event)">
+
+  </app-employee-form>
+</kendo-dialog>
+
+<kendo-dialog title="Учетная запись сотрудника"
+              *ngIf="accountOpened"
+              (close)="closeAccountForm('cancel')"
+              [minWidth]="250" [width]="550">
+  <app-employee-account-form [account]="account"
+                             (onSave)="onSaveAccount($event)"
+                             [employeeId]="employee.id">
+
+  </app-employee-account-form>
+</kendo-dialog>
+
+<dx-load-panel [visible]="loading"></dx-load-panel>

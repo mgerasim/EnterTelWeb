@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">Телефонный справочник предприятия</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link button" (click)="onAddEmployee.emit()">Добавить сотрудника <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+
+      <li class="nav-item">
+
+
+        <div class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" [(ngModel)]="searchString" placeholder="Поиск" aria-label="Поиск">
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="onSearch.emit(searchString)">Поиск</button>
+        </div>
+      </li>
+
+
+      <li class="nav-item contact">
+        <div class="k-hbox">
+          <kendo-avatar *ngIf="employee;else accountUser" [shape]="'circle'" width="20px" height="20px" [imageSrc]="'data:image/jpeg;base64,' + employee.photo"> </kendo-avatar>
+          <ng-template #accountUser>
+            <kendo-avatar [shape]="'circle'" [icon]="'user'"> </kendo-avatar>
+          </ng-template>
+          <div class="mate-info">
+            <h2>{{userName}}</h2>
+          </div>
+          <div class="k-hbox"></div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <button *ngIf="isAuth; else nonAuth" class="nav-link" (click)="logout()">Выйти</button>
+        <ng-template #nonAuth>
+          <a class="nav-link" [routerLink]="['/auth/login']">Войти</a>
+        </ng-template>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>

@@ -1,0 +1,22 @@
+<form class="k-form" [formGroup]="accountForm">
+  <fieldset class="k-form-fieldset">
+
+    <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+      <kendo-label [for]="userName" text="Имя учетной записи"></kendo-label>
+      <input formControlName="userName" kendoTextBox #userName required/>
+
+      <kendo-formhint>Имя учетной записи сотрудника</kendo-formhint>
+      <kendo-formerror>Ошибка: Имя учетной записи сотрудника должно быть указано</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield [showHints]="'initial'" [showErrors]="'initial'">
+      <kendo-label [for]="password" text="Пароль"></kendo-label>
+      <input type="password" formControlName="password" kendoTextBox #password required/>
+
+      <kendo-formhint>Пароль сотрудника</kendo-formhint>
+      <kendo-formerror>Ошибка: Пароль сотрудника должен быть указан</kendo-formerror>
+    </kendo-formfield>
+
+  </fieldset>
+  <button kendoButton (click)="onButtonClick()" [disabled]="!accountForm.valid">Сохранить</button>
+</form>

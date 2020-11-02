@@ -1,0 +1,28 @@
+<kendo-treelist [kendoTreeListFlatBinding]="employees" [height]="1500" kendoTreeListExpandable
+                [autoSize]="true"
+                [resizable]="true"
+                idField="employee.id" parentIdField="managerId">
+  <kendo-treelist-column [expandable]="true" field="employee.personnelNumber" title="Табель" [width]="50">
+  </kendo-treelist-column>
+  <kendo-treelist-column field="employee.photo" title="Фото" [width]="30">
+    <ng-template kendoTreeListCellTemplate let-dataItem>
+      <img [src]="'data:image/jpeg;base64,' + dataItem.employee.photo" alt="" />
+    </ng-template>
+  </kendo-treelist-column>
+  <kendo-treelist-column field="position.title" title="Должность" [width]="100"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.name" title="Имя" [width]="100"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.surname" title="Фамилия" [width]="100"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.patronymic" title="Отчество" [width]="100"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.contactPhone" title="Сотовый номер" [width]="70"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.workPhone" title="Рабочий номер" [width]="70"></kendo-treelist-column>
+  <kendo-treelist-column field="employee.email" title="Email" [width]="70"></kendo-treelist-column>
+  <kendo-treelist-column title="" [width]="100">
+    <ng-template kendoTreeListCellTemplate let-dataItem>
+      <p class="k-block">
+        <button title="Добавить учетную запись к сотруднику" (click)="onAddAccount.emit(dataItem.employee)" ><span class="k-icon k-i-user"></span></button>
+        <button title="Редактировать сотрудника" (click)="onEdit.emit(dataItem.employee)" ><span class="k-icon k-i-pencil"></span></button>
+        <button title="Удалить сотрудника" (click)="onDelete.emit(dataItem.employee)" ><span class="k-icon k-i-delete"></span></button>
+      </p>
+    </ng-template>
+  </kendo-treelist-column>
+</kendo-treelist>
